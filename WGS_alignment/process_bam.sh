@@ -11,7 +11,6 @@ threads=10;
 # run script in folder containing bam files as ./process_bam.sh input_folder
 # samtools should be accessible from path.
 # get input folder name in a variable
-inpbin=$1;
 
 # get list of bam files 
 fileName=($(ls *.bam | sed 's/.bam//g'));
