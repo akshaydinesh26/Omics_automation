@@ -24,19 +24,19 @@ Omics data analysis automation scripts and other data processing scripts.
        ```````console
        ./alignment_short.sh inlist output_folder aligner_name
        ```````
-       inlist - a csv file of the input samples and readname in the following format.
-                samplename,readname like hum1,ERR123.
-                readname should be common for both the read files. READS SHOULD BE NAMED AS "readname_[1/2].fq.gz".
-       output_folder - full path of the folder to save bam files.
-       aligner_name - name of the short read aligner to use. it should be,.
-                bowtie/bowtie2/bwa
+       inlist - a csv file of the input samples and readname in the following format.\
+                samplename,readname like hum1,ERR123.\
+                readname should be common for both the read files. READS SHOULD BE NAMED AS "readname_[1/2].fq.gz".\
+       output_folder - full path of the folder to save bam files.\
+       aligner_name - name of the short read aligner to use. it should be,\
+                bowtie/bowtie2/bwa\
 
      make sure that aligner you choose and samtools are available in the path.
   
   2. process_bam.sh
 
-     script to process the alignment bam file from the above script to variant callers.
-     make sure samtools is in the path
+     script to process the alignment bam file from the above script to variant callers.\
+     make sure samtools is in the path.\
      run script in folder containing bam files as; 
        ```console
        ./process_bam.sh
