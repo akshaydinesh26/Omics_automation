@@ -1,5 +1,4 @@
-## RajeshLab
-repository for rajeshLab_2023-24
+## Omics automation
 Omics data analysis automation scripts and other data processing scripts.
 
 # Processing scripts
