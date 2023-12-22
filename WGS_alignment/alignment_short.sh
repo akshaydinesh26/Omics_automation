@@ -1,8 +1,14 @@
 /usr/bin/bash
-
-#assign number of threads to be used by aligner
+# this is alignment file for paired end short reads.
+# make sure bowtie2/bowtie/bwa mem which you will use is accessible from path and also samtools.
+# assign number of threads to be used by aligner
+# and add the index to be used
 thread=10;
+index=;
 
+# make a comma seperated file(inlist) of input reads as "sample_name,readname". readname should be common for both reads.
+# execute this script as ./alignment_short.sh inlist output_folder aligner_name.
+# after adding above execute the 
 # dont alter anything below
 # --------------------------------------------------------------------------------------------------------------------
 #execute in the same folder with the read files
@@ -15,7 +21,6 @@ thread=10;
 inlist1=$1;
 outbin=$2;
 aligner=$3;
-index=$4;
 
 
 #make inlist files available to 2 variables sample and readName
@@ -62,6 +67,7 @@ then
    samp=${sample[${readn}]}
    reName=${readName[${readn}]}
    echo "executing bwa mem with sample $samp"
+   bwa_1 $thread $reName $samp
  done
 else
   printf "#error in input\n#aligner input not recogonizable"
@@ -78,7 +84,7 @@ bowtie_2() {
   local read1="${2}_1.fq.gz"
   local read2="${2}_2.fq.gz"
   local output="${outbin}/${3}.bam"
-  bowtie2 -p $threads -1 $read1 -2 $read2 | samtools view -@ $threads -bs -o $output
+  bowtie2 -p $threads -x $index -1 $read1 -2 $read2 | samtools view -@ $threads -bs -o $output -
 }
 
 #bowtie
@@ -87,5 +93,14 @@ bowtie_1() {
   local read1="${2}_1.fq.gz"
   local read2="${2}_2.fq.gz"
   local output="${outbin}/${3}.bam"
-  bowtie -p $threads -1 $read1 -2 $read2 | samtools view -@ $threads -bs -o $output
+  bowtie -p $threads -x $index -1 $read1 -2 $read2 | samtools view -@ $threads -bs -o $output -
+}
+
+#bwa mem
+bwa_1() {
+  local threads=$1
+  local read1="${2}_1.fq.gz"
+  local read2="${2}_2.fq.gz"
+  local output="${outbin}/${3}.bam"
+  bwa mem -t $threads $index $read1 $read2 | samtools view -@ $threads -bs -o $output -
 }
