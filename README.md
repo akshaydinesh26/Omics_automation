@@ -25,10 +25,10 @@ Omics data analysis automation scripts and other data processing scripts.
        ./alignment_short.sh inlist output_folder aligner_name
        ```````
      where;
-       inlist - a csv file of the input samples and readname in the following format,
+       inlist - a csv file of the input samples and readname in the following format \n
                 samplename,readname
 
-              eg: hum1,ERR123
+          eg; hum1,ERR123
 
               readname should be common for both the read files. READS SHOULD BE NAMED AS "readname_[1/2].fq.gz".
        output_folder - full path of the folder to save bam files
