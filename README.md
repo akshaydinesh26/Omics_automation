@@ -24,7 +24,6 @@ Omics data analysis automation scripts and other data processing scripts.
        ```````console
        ./alignment_short.sh inlist output_folder aligner_name
        ```````
-     where;
        inlist - a csv file of the input samples and readname in the following format \n
                 samplename,readname
 
