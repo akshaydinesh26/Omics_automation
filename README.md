@@ -21,7 +21,9 @@ Omics data analysis automation scripts and other data processing scripts.
 
      short paired end reads are nowadays more common than single end reads. So, this script is only for paired-end short reads.
      execute this script as;
-       **./alignment_short.sh inlist output_folder aligner_name**
+       ```````console
+       ./alignment_short.sh inlist output_folder aligner_name
+       ```````
      where;
        inlist - a csv file of the input samples and readname in the following format,
                 samplename,readname
@@ -31,7 +33,7 @@ Omics data analysis automation scripts and other data processing scripts.
               readname should be common for both the read files. READS SHOULD BE NAMED AS "readname_[1/2].fq.gz".
        output_folder - full path of the folder to save bam files
        aligner_name - name of the short read aligner to use. it should be,
-                **bowtie/bowtie2/bwa**
+                bowtie/bowtie2/bwa
 
      make sure that aligner you choose and samtools are available in the path.
   
@@ -40,4 +42,6 @@ Omics data analysis automation scripts and other data processing scripts.
      script to process the alignment bam file from the above script to variant callers.
      make sure samtools is in the path
      run script in folder containing bam files as; 
-       **./process_bam.sh**
+       ```console
+       ./process_bam.sh
+       ```
