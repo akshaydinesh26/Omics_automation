@@ -26,10 +26,10 @@ Omics data analysis automation scripts and other data processing scripts.
        ```````
        inlist - a csv file of the input samples and readname in the following format.\
                 samplename,readname like hum1,ERR123.\
-                readname should be common for both the read files. READS SHOULD BE NAMED AS "readname_[1/2].fq.gz".\
-       output_folder - full path of the folder to save bam files.\
-       aligner_name - name of the short read aligner to use. it should be,\
-                bowtie/bowtie2/bwa\
+                readname should be common for both the read files. READS SHOULD BE NAMED AS "readname_[1/2].fq.gz".<br>
+       output_folder - full path of the folder to save bam files.<br>
+       aligner_name - name of the short read aligner to use. it should be,<br>
+                bowtie/bowtie2/bwa\<br>
 
      make sure that aligner you choose and samtools are available in the path.
   
