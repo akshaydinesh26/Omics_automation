@@ -29,6 +29,6 @@ for sample in ${fileName[@]};
   rm "${tembin}/${sample}_nsort.bam";
   samtools sort -@ $threads -o "${tembin}/${sample}_psort.bam" "${tembin}/${sample}_fixmate.bam";
   rm "${tembin}/${sample}_fixmate.bam";
-  samtools markdup "${tembin}/${sample}_psort.bam" "${outbin}/${sample}_markdup.bam";
+  samtools markdup "${tembin}/${sample}_psort.bam" "${outbin}/${sample}.bam";
   rm "${tembin}/${sample}_psort.bam";
 done
