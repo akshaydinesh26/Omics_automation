@@ -56,7 +56,7 @@ Omics data analysis automation scripts and other data processing scripts.
  
     script to process the alignment bam file for GATK using picard tools.
     run script in folder containing bam files as; 
-       ```console
+      ```console
        ./process_bam_picard.sh
        ```
    
