@@ -1,22 +1,13 @@
 #!/usr/bin/bash
 
-#create .fai indexed index 
-# with samtools faidx input_reference.fasta
-#reference index
-#add varscan2 jarfile location
+# add threads and picard jar file location
+# make sure java is in the path
+# add reference of picarf jar file and GATK should be available in path.
+# get latest version of GATK 
+# add index which is the reference genome which was used for alignment and should have dict and fai index created in teh same location.
+# add known reference which is gzipped and indexed vcf file
 index=;
-varscanRef=;
-picardRef=;
-
-# get file names of the bam file.
-# samtools and varscan2 should be available in the path.
-#java compatible with varscan jar file should be in path.
-# change below to change varscan parameters
-avgQual=15;
-minCov=8;
-minVarCount=2;
-pval=0.00001;
-
+threads=10;
 
 # dont alter anything below
 #---------------------------------------------------------------------------------------------------------------------------------------
@@ -27,13 +18,14 @@ fileName=($(ls *.bam | sed 's/.bam//g'));
 
 #create output folder and temporary directory
 mkdir ./variants;
-mkdir ./variants/snp;
-mkdir ./variants/indel;
 mkdir ./temp;
 outbin=($(pwd ./variants));
-tembin=($(pwd ./temp));
 
 for file in ${fileName[@]};
 do
-
+gatk --java-options "-Xmx7g" HaplotypeCaller \
+-I "${file}.bam" \
+-R $index \
+-ERC GVCF \
+-O "${outbin}/${sample}.vcf.gz";
 done

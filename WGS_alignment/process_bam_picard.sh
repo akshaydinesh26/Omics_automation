@@ -39,7 +39,7 @@ for sample in ${fileName[@]};
   markdup "${tembin}/${sample}_psort.bam" "${tembin}/${sample}_markdup.bam" "${outbin}/metrics/${sample}_metric.txt";
   rm "${tembin}/${sample}_psort.bam";
   recaliberate_build "${tembin}/${sample}_markdup.bam" "${tembin}/${sample}_data.table"
-  recaliberate_apply "${tembin}/${sample}_markdup.bam" "${tembin}/${sample}_data.table" "${outbin}/${sample}_processed.bam" 
+  recaliberate_apply "${tembin}/${sample}_markdup.bam" "${tembin}/${sample}_data.table" "${outbin}/${sample}.bam" 
 
 done
 
