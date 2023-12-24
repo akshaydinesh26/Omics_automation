@@ -1,4 +1,3 @@
-#/usr/bin/bash
 #!/usr/bin/bash
 
 #create .fai indexed index 

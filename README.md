@@ -43,9 +43,20 @@ Omics data analysis automation scripts and other data processing scripts.
 
   3. varscan2.sh
      
-     script to process the bam file to mpileup and to call snp and indels from the mpileup ffile.\
+     script to process the bam file to mpileup and to call snp and indels from the mpileup file with varscan2.\
      make sure samtools and java version compatible with varscan2 jarfile is available in the path.\
      run the script in the folder with processed bam file.\
       ```console
        ./varscan2.sh
        ```
+
+  alternatively, you can process the bam file and call variants using picard and GATK.\
+
+  4. process_bam_picard.sh
+ 
+    script to process the alignment bam file for GATK using picard tools.
+    run script in folder containing bam files as; 
+       ```console
+       ./process_bam_picard.sh
+       ```
+   
