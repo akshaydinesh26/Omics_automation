@@ -23,7 +23,7 @@ Omics data analysis automation scripts and other data processing scripts.
        ```````console
        ./alignment_short.sh inlist output_folder aligner_name
        ```````
-       inlist - a csv file of the input samples and readname in the following format.\
+       inlist - a csv file of the input samples and readname in the following format.
                 samplename,readname like hum1,ERR123.\
                 readname should be common for both the read files. READS SHOULD BE NAMED AS "readname_[1/2].fq.gz".<br>
        output_folder - full path of the folder to save bam files.<br>
@@ -34,7 +34,7 @@ Omics data analysis automation scripts and other data processing scripts.
   
   2. process_bam.sh
 
-     script to process the alignment bam file from the above script to variant callers.\
+     script to process the alignment bam file from the above script to variant callers.
      make sure samtools is in the path.\
      run script in folder containing bam files as; 
        ```console
@@ -43,18 +43,18 @@ Omics data analysis automation scripts and other data processing scripts.
 
   3. varscan2.sh
      
-     script to process the bam file to mpileup and to call snp and indels from the mpileup file with varscan2.\
-     make sure samtools and java version compatible with varscan2 jarfile is available in the path.\
-     run the script in the folder with processed bam file.\
+     script to process the bam file to mpileup and to call snp and indels from the mpileup file with varscan2.
+     make sure samtools and java version compatible with varscan2 jarfile is available in the path.
+     run the script in the folder with processed bam file.
       ```console
        ./varscan2.sh
        ```
 
-  alternatively, you can process the bam file and call variants using picard and GATK.\
+  alternatively, you can process the bam file and call variants using picard and GATK.
 
   4. process_bam_picard.sh
  
-    script to process the alignment bam file for GATK using picard tools.\
-    run script in folder containing bam files as;\ 
+     script to process the alignment bam file for GATK using picard tools.
+     run script in folder containing bam files as;\ 
   
    
