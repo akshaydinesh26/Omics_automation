@@ -63,6 +63,6 @@ Omics data analysis automation scripts and other data processing scripts.
      make sure samtools and java version compatible with varscan2 jarfile is available in the path.
      run the script in the folder with processed bam file.
       ```console
-       ./varscan2.sh
+       ./gatk.sh
        ```
    
