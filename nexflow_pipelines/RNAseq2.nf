@@ -5,13 +5,22 @@ params.transcriptome_file = "$projectDir/test_data/transcriptome.fa"
 params.multiqc = "$projectDir/multiqc"
 params.outdir  = "$projectDir/rnaseq1_data/results"
 
+// # location of programs
+params.klsto="~/miniconda3/envs/kallisto"
+params.fqc="~/miniconda3/envs/fastqc"
+params.mqc="~/miniconda3/envs/multiqc"
+
+
 log.info """\
 
             Simple RNAseq Workflow
-            Raw Reads        : "${params.reads}"
-            Transcriptome    : "${params.transcriptome_file}"
-            multiqc report   : "${params.multiqc}"
-            output directory : "${params.outdir}"
+            Raw Reads         : "${params.reads}"
+            Transcriptome     : "${params.transcriptome_file}"
+            multiqc report    : "${params.multiqc}"
+            output directory  : "${params.outdir}"
+            kallisto locattion: "${params.klsto}"
+            fastqc location   : "${params.fqc}"
+            multiqc location  : "${params.mqc}"
 
 """
 
@@ -20,7 +29,7 @@ log.info """\
  * given the transcriptome file
  */
 process INDEX {
-    conda '/home/akshay/miniconda3/envs/kallisto'
+    conda "${params.klsto}"
     // https://www.nextflow.io/docs/latest/process.html#directives
     // above is called directives sets resources used by process should be above all
 
@@ -38,7 +47,7 @@ process INDEX {
 
 // salmon quantification
 process QUANTIFICATION {
-    conda '/home/akshay/miniconda3/envs/kallisto'
+    conda "${params.fqc}"
     tag "kallisto on $sample_id"
     // publish into a directory
     publishDir "my_rnaseq_data/rnaseq"
@@ -58,7 +67,7 @@ process QUANTIFICATION {
 }
 
 process FASTQC {
-    conda '/home/akshay/miniconda3/envs/fastqc'
+    conda "${params.mqc}"
     tag "FASTQC on $sample_id"
 
     input:
