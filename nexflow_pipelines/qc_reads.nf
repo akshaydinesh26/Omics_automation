@@ -13,7 +13,7 @@ params.mqc="~/miniconda3/envs/multiqc"
 
 log.info """\
 
-            Simple RNAseq Workflow
+            Quality Control Report Workflow
             Raw Reads          : "${params.reads}"
             fastqc location    : "${params.fqc}"
             multiqc location   : "${params.mqc}"
