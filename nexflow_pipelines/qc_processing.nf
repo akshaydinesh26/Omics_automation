@@ -7,7 +7,8 @@
 
 params.reads="$projectDir/rawReads/*_{1,2}.fastq.gz"
 params.outdir="$projectDir/hqReads"
-
+params.qtrim=20
+params.len=75
 
 // #location of programs please update
 params.fastp="/home/akshay/miniconda3/envs/fastp"
@@ -16,8 +17,10 @@ log.info """\
 
             QC Reads Processing Workflow
             Raw Reads          : "${params.reads}"
-            fastp location    : "${params.fastp}"
+            fastp location     : "${params.fastp}"
             output directory   : "${params.outdir}"
+	          quality filter           : "${params.qtrim}"
+            minimum length     : "${params.len}"
 
 """
 
@@ -29,6 +32,8 @@ process processRun {
 
   input:
   tuple val(sample_id), path(reads)
+  val qtrim
+  val lenl
 
   
   output:
@@ -40,11 +45,13 @@ process processRun {
 
   script:
   """
-  fastp -i ${reads[0]} -I ${reads[1]} -o "filt_${sample_id}_1.fastq.gz" -O "filt_${sample_id}_2.fastq.gz" -R "${sample_id}" -j "${sample_id}.json" -h "${sample_id}.html"
+  fastp -i ${reads[0]} -I ${reads[1]} -o "filt_${sample_id}_1.fastq.gz" -O "filt_${sample_id}_2.fastq.gz" -q ${qtrim} -l ${lenl} -R "${sample_id}" -j "${sample_id}.json" -h "${sample_id}.html"
   """
 }
 
 workflow {
   channel.fromFilePairs(params.reads, checkIfExists: true).set{ reads_ch }
-  fastp_ch = processRun(reads_ch)
+  channel.value(params.qtrim).set{ qtrim_ch }
+  channel.value(params.len).set{ lenl_ch }
+  fastp_ch = processRun(reads_ch,qtrim_ch,lenl_ch)
 }
