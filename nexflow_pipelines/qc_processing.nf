@@ -19,7 +19,7 @@ log.info """\
             Raw Reads          : "${params.reads}"
             fastp location     : "${params.fastp}"
             output directory   : "${params.outdir}"
-	          quality filter           : "${params.qtrim}"
+	    quality filter     : "${params.qtrim}"
             minimum length     : "${params.len}"
 
 """
@@ -27,7 +27,8 @@ log.info """\
 process processRun {
   cpus 8
   conda "${params.fastp}"
-  publishDir "${params.outdir}", mode: 'copy'
+  publishDir "${params.outdir}", mode: 'copy', pattern: "*.fastq.gz"
+  publishDir "${params.outdir}/report", mode: 'copy', pattern: "*.{html,json}"
   tag "fastp on $sample_id"
 
   input:
@@ -40,12 +41,12 @@ process processRun {
    stdout
   path "${sample_id}.html"
   path "${sample_id}.json"
-  path "filt_${sample_id}_1.fastq.gz"
-  path "filt_${sample_id}_2.fastq.gz"
+  path "${sample_id}_1.fastq.gz"
+  path "${sample_id}_2.fastq.gz"
 
   script:
   """
-  fastp -i ${reads[0]} -I ${reads[1]} -o "filt_${sample_id}_1.fastq.gz" -O "filt_${sample_id}_2.fastq.gz" -q ${qtrim} -l ${lenl} -R "${sample_id}" -j "${sample_id}.json" -h "${sample_id}.html"
+  fastp -i ${reads[0]} -I ${reads[1]} -o "${sample_id}_1.fastq.gz" -O "${sample_id}_2.fastq.gz" -q ${qtrim} -l ${lenl} -R "${sample_id}" -j "${sample_id}.json" -h "${sample_id}.html"
   """
 }
 
